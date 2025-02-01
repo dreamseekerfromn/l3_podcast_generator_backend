@@ -1,5 +1,6 @@
 const express = require("express");
 const uploads = express.Router();
+const { getAllUploadedFiles, getSingleUploadedFile, createNewFileRecord } = require("../queries/file_record.js");
 
 uploads.get("/", async (req, res) => {
 

@@ -11,13 +11,13 @@ try {
 }
 
 const storage = multer.diskStorage({
-    destination(req, file, done){
-        done(null, 'uploads');
-    }, filename(req, file, done){
-        const ext = path.extname(file.originalname);
-        done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    destination(req, file, done){   //destination storage
+        done(null, 'uploads');      //path
+    }, filename(req, file, done){   //file name info
+        const ext = path.extname(file.originalname);    //extention
+        done(null, path.basename(file.originalname, ext) + Date.now() + ext);   //filename + date + . ext.
     }
 });
-const uploadStorage = multer({ storage: storage, limits: {fileSize: 100 * 1024 * 1024}});
+const uploadStorage = multer({ storage: storage, limits: {fileSize: 100 * 1024 * 1024}});   //size limit
 
 module.exports = uploadStorage;

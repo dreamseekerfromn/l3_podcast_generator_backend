@@ -3,7 +3,13 @@ const uploads = express.Router();
 const { getAllUploadedFiles, getSingleUploadedFile, createNewFileRecord } = require("../queries/file_record.js");
 
 uploads.get("/", async (req, res) => {
+    let fileList = getAllUploadedFiles();
 
+    if(fileList.length > 0){
+        res.status(200).json({ success: true, data: { payload: [...fileList] } });
+    } else {
+        res.status(400).json({ error: "No file list"});
+    }
 })
 
 uploads.get("/:id", async (req, res) => {
@@ -25,4 +31,12 @@ uploads.get("/:id", async (req, res) => {
     }
 })
 
-uploads.post("/", async (req, res) => {})
+uploads.post("/", async (req, res) => {
+    const { id } = req.params;
+    try{
+        let fileRecord = await createNewFileRecord(id);
+        console.log(fileRecord);
+    } catch(err){
+        res.status(400).json({error: err});
+    }
+})

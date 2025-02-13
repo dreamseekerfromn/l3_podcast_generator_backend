@@ -1,9 +1,9 @@
 const express = require("express");
 const { default: UnrealSpeech } = require("unrealspeech");
 const unrealSpeech = new UnrealSpeech();
-const textSpeech = express.Router();
+const textConverted = express.Router();
 
-uploads.get("/", async (req, res) => {
+textConverted.get("/", async (req, res) => {
     const { textToConvert } = req.param;
 
     const speechBuffer = await unrealSpeech.stream({
@@ -24,3 +24,5 @@ uploads.get("/", async (req, res) => {
         res.status(400).json({ error: "No file list"});
     }
 })
+
+module.exports = textConverted;

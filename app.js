@@ -12,7 +12,7 @@ app.get("/", (request, response) => {
     response.send("Hello World!");
 });
 
-app.use("/upload", uploads);
+//app.use("/upload", uploads);
 app.use("/texttospeech", textConverted);
 
 // 404 Page not found

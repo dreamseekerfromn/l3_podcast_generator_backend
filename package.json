@@ -1,9 +1,17 @@
 {
+  "scripts": {
+    "db:init": "psql -U postgres -f db/schema.sql",
+    "db:seed": "psql -U postgres -f db/seed.sql",
+    "test": "jest --runInBand",
+    "dbinit": "psql -U postgres -f db/schema.sql; psql -U postgres -f db/seed.sql",
+    "start": "nodemon server.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "multer": "^1.4.5-lts.1",
+    "pg-promise": "^11.10.2",
     "unrealspeech": "^1.8.6"
   }
 }
